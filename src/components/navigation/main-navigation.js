@@ -23,19 +23,6 @@ function MainNavigation({ datoCmsSite, datoCmsHome, allDatoCmsSocialProfile }) {
             <Link to="/about">About</Link>
           </li>
         </ul>
-        <p className="sidebar__social">
-          {allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
-            <a
-              key={profile.profileType}
-              href={profile.url}
-              target="blank"
-              className={`social social--${profile.profileType.toLowerCase()}`}
-            >
-              {' '}
-            </a>
-          ))}
-        </p>
-        <div className="sidebar__copyright">{datoCmsHome.copyright}</div>
       </div>
     </div>
   );

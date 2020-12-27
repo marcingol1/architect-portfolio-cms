@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-datocms-demo",
-  "description": "Gatsby DatoCMS creative portfolio demo",
+  "name": "architect-portfolio",
+  "description": "Architect demo from Gatsby Demo template",
   "version": "1.0.0",
-  "author": "Stefano Verna <s.verna@datocms.com>",
+  "author": "Marcin Gol",
   "dependencies": {
     "dotenv": "^8.1.0",
     "gatsby": "^2.22.10",

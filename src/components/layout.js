@@ -8,6 +8,7 @@ import { HelmetDatoCms } from 'gatsby-source-datocms';
 
 import '../styles/index.sass';
 import MainNavigation from './navigation/main-navigation';
+import Footer from './navigation/footer';
 
 const TemplateWrapper = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -75,6 +76,10 @@ const TemplateWrapper = ({ children }) => {
             </div>
             {children}
           </div>
+          <Footer
+            datoCmsHome={data.datoCmsHome}
+            allDatoCmsSocialProfile={data.allDatoCmsSocialProfile}
+          />
         </div>
       )}
     />
