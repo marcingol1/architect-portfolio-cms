@@ -1,6 +1,7 @@
 .sidebar
-  display: grid
-  grid-template-areas: 'title menu' 'intro menu'
+  @media screen and (min-width: 900px)
+    display: grid
+    grid-template-areas: 'title menu' 'intro menu'
 
   .sidebar__title
     margin-bottom: 20px
@@ -31,6 +32,10 @@
 .sidebar__menu
   margin-bottom: 20px
   grid-area: menu
+  @media screen and (min-width: 900px)
+    display: grid
+    grid-auto-flow: column
+    justify-content: flex-end
 
   li
     a

@@ -6,6 +6,9 @@ import { Link } from 'gatsby';
 import { StaticQuery, graphql } from 'gatsby';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 
+// Import custom fonts to Gatsby build:
+import '@fontsource/montserrat';
+
 import '../styles/index.sass';
 import MainNavigation from './navigation/main-navigation';
 import Footer from './navigation/footer';

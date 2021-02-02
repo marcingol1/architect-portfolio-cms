@@ -3,7 +3,22 @@
   background-color: white
 
 .sheet__inner
-  max-width: 600px
+  display: grid
+  grid-gap: 2em
+  grid-template-columns: 1fr
+  grid-template-areas: 'gallery' 'container'
+
+  @media screen and (min-width: 900px)
+    grid-template-columns: 2fr 1fr
+    grid-template-areas: 'gallery container'
+
+.sheet__container
+  grid-area: 'container'
+
+.sheet__gallery
+  display: inline-block
+  grid-area: 'gallery'
+  width: 100%
 
 .sheet__title
   font-size: 30px

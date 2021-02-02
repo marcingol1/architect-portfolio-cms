@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Marcin Gol",
   "dependencies": {
+    "@fontsource/montserrat": "^4.0.1",
     "dotenv": "^8.1.0",
     "gatsby": "^2.22.10",
     "gatsby-image": "^2.2.34",
