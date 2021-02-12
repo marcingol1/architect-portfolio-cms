@@ -4,27 +4,33 @@ import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import Layout from '../components/layout';
 
-const Contact = ({ data: { contact } }) => (
-  <Layout>
-    <article className="sheet">
-      <HelmetDatoCms seo={contact.seoMetaTags} />
-      <div className="sheet__inner">
-        <div className="sheet__gallery">
-          <Img fluid={contact.photo.fluid} />
+const Contact = ({ data: { contact } }) => {
+  console.log({ contact });
+  return (
+    <Layout>
+      <article className="sheet">
+        <HelmetDatoCms seo={contact.seoMetaTags} />
+        <div className="sheet__inner">
+          <div className="sheet__gallery">
+            <Img fluid={contact.photo.fluid} />
+          </div>
+          <div className="sheet__container">
+            <h1 className="sheet__lead">{contact.subtitle}</h1>
+            <main
+              className="sheet__body"
+              dangerouslySetInnerHTML={{
+                __html: contact.bioNode.childMarkdownRemark.html,
+              }}
+            />
+          </div>
+          <div className="sheet__gallery sheet__gallery__photo_logo">
+            <Img fluid={contact.photoLogo.fluid} />
+          </div>
         </div>
-        <div className="sheet__container">
-          <h1 className="sheet__lead">{contact.subtitle}</h1>
-          <main
-            className="sheet__body"
-            dangerouslySetInnerHTML={{
-              __html: contact.bioNode.childMarkdownRemark.html,
-            }}
-          />
-        </div>
-      </div>
-    </article>
-  </Layout>
-);
+      </article>
+    </Layout>
+  );
+};
 
 export default Contact;
 
@@ -38,6 +44,11 @@ export const query = graphql`
       subtitle
       photo {
         fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
+          ...GatsbyDatoCmsSizes
+        }
+      }
+      photoLogo {
+        fluid(maxWidth: 400, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
         }
       }
