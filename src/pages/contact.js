@@ -23,8 +23,8 @@ const Contact = ({ data: { contact } }) => {
               }}
             />
           </div>
-          <div className="sheet__gallery sheet__gallery__photo_logo">
-            <Img fluid={contact.photoLogo.fluid} />
+          <div className="sheet__gallery__photo_logo">
+            <Img fluid={contact.photoLogo.fluid} loading="lazy" />
           </div>
         </div>
       </article>

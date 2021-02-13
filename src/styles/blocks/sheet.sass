@@ -10,7 +10,7 @@
 
   @media screen and (min-width: 900px)
     grid-template-columns: 2fr 1fr
-    grid-template-areas: 'gallery container' 'gallery-logo'
+    grid-template-areas: 'gallery container' 'gallery-logo gallery-logo'
 
 .sheet__container
   grid-area: 'container'
@@ -19,6 +19,9 @@
   display: inline-block
   grid-area: 'gallery'
   width: 100%
+
+.sheet__gallery__photo_logo
+  grid-area: gallery-logo
 
 .sheet__title
   font-size: 30px
@@ -34,9 +37,6 @@
 .sheet__gallery,
 .sheet__slider
   margin-bottom: 30px
-
-.sheet__gallery__photo_logo
-  grid-area: gallery-logo
 
 .sheet__body
   color: $light-body-color
