@@ -5,7 +5,6 @@ import Img from 'gatsby-image';
 import Layout from '../components/layout';
 
 const Contact = ({ data: { contact } }) => {
-  console.log({ contact });
   return (
     <Layout>
       <article className="sheet">

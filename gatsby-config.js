@@ -1,8 +1,8 @@
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: `Creative Portfolio`,
+    title: `Architect Portfolio`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -14,5 +14,13 @@ module.exports = {
         apiToken: process.env.DATO_API_TOKEN,
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/, // See below to configure properly
+        },
+      },
+    },
   ],
-}
+};

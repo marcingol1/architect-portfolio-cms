@@ -31,11 +31,7 @@ const TemplateWrapper = ({ children }) => {
             seoMetaTags {
               ...GatsbyDatoCmsSeoMetaTags
             }
-            introTextNode {
-              childMarkdownRemark {
-                html
-              }
-            }
+            introText
             copyright
           }
           allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {

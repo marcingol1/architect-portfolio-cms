@@ -2,25 +2,26 @@ import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 
-function MainNavigation({ datoCmsSite, datoCmsHome, allDatoCmsSocialProfile }) {
+import HeaderLogo from '../../assets/header_logo.svg';
+
+function MainNavigation({ datoCmsSite, datoCmsHome }) {
   return (
     <div className="container__sidebar">
       <div className="sidebar">
-        <h6 className="sidebar__title">
-          <Link to="/">{datoCmsSite.globalSeo.siteName}</Link>
-        </h6>
-        <div
-          className="sidebar__intro"
-          dangerouslySetInnerHTML={{
-            __html: datoCmsHome.introTextNode.childMarkdownRemark.html,
-          }}
-        />
+        <Link to="/">
+          <div className="sidebar__intro">
+            <HeaderLogo width="200" />
+          </div>
+        </Link>
         <ul className="sidebar__menu">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">Strona główna</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/works">Realizacje</Link>
+          </li>
+          <li>
+            <Link to="/contact">O mnie</Link>
           </li>
         </ul>
       </div>
