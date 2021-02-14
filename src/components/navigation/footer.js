@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 
 function Footer({ allDatoCmsSocialProfile, datoCmsHome, datoCmsAboutPage }) {
-  console.log({ datoCmsAboutPage });
   return (
     <footer className="container__footer">
       <p className="footer__social">
