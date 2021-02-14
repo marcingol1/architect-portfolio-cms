@@ -35,7 +35,7 @@ export const query = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
       background {
-        fluid(imgixParams: { fm: "jpg", auto: "compress" }) {
+        fluid(maxWidth: 4000, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
         }
       }
