@@ -27,6 +27,16 @@ const TemplateWrapper = ({ children }) => {
               ...GatsbyDatoCmsFaviconMetaTags
             }
           }
+          datoCmsAboutPage {
+            logoGallery {
+              fluid(
+                maxWidth: 400
+                imgixParams: { fm: "jpg", auto: "compress" }
+              ) {
+                ...GatsbyDatoCmsSizes
+              }
+            }
+          }
           datoCmsHome {
             seoMetaTags {
               ...GatsbyDatoCmsSeoMetaTags
@@ -78,6 +88,7 @@ const TemplateWrapper = ({ children }) => {
           <Footer
             datoCmsHome={data.datoCmsHome}
             allDatoCmsSocialProfile={data.allDatoCmsSocialProfile}
+            datoCmsAboutPage={data.datoCmsAboutPage}
           />
         </div>
       )}
@@ -86,7 +97,7 @@ const TemplateWrapper = ({ children }) => {
 };
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 export default TemplateWrapper;

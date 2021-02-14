@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'gatsby-image';
 
-function Footer({ allDatoCmsSocialProfile, datoCmsHome }) {
+function Footer({ allDatoCmsSocialProfile, datoCmsHome, datoCmsAboutPage }) {
+  console.log({ datoCmsAboutPage });
   return (
     <footer className="container__footer">
       <p className="footer__social">
@@ -16,6 +18,11 @@ function Footer({ allDatoCmsSocialProfile, datoCmsHome }) {
           </a>
         ))}
       </p>
+      <div className="footer__logo">
+        {datoCmsAboutPage.logoGallery.map((photo) => {
+          return <Img fluid={photo.fluid} key={photo.fluid.key} />;
+        })}
+      </div>
       <div className="footer__copyright">{datoCmsHome.copyright}</div>
     </footer>
   );

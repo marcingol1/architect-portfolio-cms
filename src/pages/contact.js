@@ -22,9 +22,6 @@ const Contact = ({ data: { contact } }) => {
               }}
             />
           </div>
-          <div className="sheet__gallery__photo_logo">
-            <Img fluid={contact.photoLogo.fluid} loading="lazy" />
-          </div>
         </div>
       </article>
     </Layout>
@@ -43,11 +40,6 @@ export const query = graphql`
       subtitle
       photo {
         fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
-          ...GatsbyDatoCmsSizes
-        }
-      }
-      photoLogo {
-        fluid(maxWidth: 400, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
         }
       }
