@@ -17,9 +17,16 @@
   grid-gap: 0.5em
   align-items: center
 
+.footer__info
+  display: grid
+  grid-auto-flow: column
+  font-size: 10px
+  font-weight: 300
+  grid-template-columns: 1fr 1fr
+
 .footer__copyright
   justify-self: flex-end
 
 @media screen and (min-width: 900px)
   .container__footer
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: 1fr 2fr 1fr

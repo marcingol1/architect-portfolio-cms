@@ -33,6 +33,7 @@ const TemplateWrapper = ({ children }) => {
                 ...GatsbyDatoCmsSizes
               }
             }
+            logoText
           }
           datoCmsHome {
             seoMetaTags {
