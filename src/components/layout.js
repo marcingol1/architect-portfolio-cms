@@ -29,10 +29,7 @@ const TemplateWrapper = ({ children }) => {
           }
           datoCmsAboutPage {
             logoGallery {
-              fluid(
-                maxWidth: 400
-                imgixParams: { fm: "jpg", auto: "compress" }
-              ) {
+              fluid(imgixParams: { fm: "jpg", auto: "compress" }) {
                 ...GatsbyDatoCmsSizes
               }
             }
