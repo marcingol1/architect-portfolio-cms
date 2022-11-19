@@ -10,7 +10,7 @@ function MainNavigation({ datoCmsSite, datoCmsHome }) {
       <div className="sidebar">
         <Link to="/">
           <div className="sidebar__intro">
-            <HeaderLogo width="200" />
+            <HeaderLogo width="150" />
           </div>
         </Link>
         <ul className="sidebar__menu">

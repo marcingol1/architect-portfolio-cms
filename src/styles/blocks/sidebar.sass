@@ -3,7 +3,8 @@
     display: grid
     align-items: center
     grid-template-areas: 'title menu' 'intro menu'
-    padding: 1em
+    padding-left: 1em
+    padding-right: 1em
 
   .sidebar__title
     margin-bottom: 20px
@@ -33,6 +34,10 @@
 
 .sidebar__menu
   grid-area: menu
+  display: grid
+  grid-gap: 0.5em
+  padding-bottom: 0.5em
+
   @media screen and (min-width: 900px)
     display: grid
     grid-auto-flow: column
