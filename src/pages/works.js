@@ -33,7 +33,7 @@ export default WorksPage;
 
 export const query = graphql`
   query WorksPageQuery {
-    allDatoCmsWork(sort: { fields: [position], order: ASC }) {
+    allDatoCmsWork(sort: { position: ASC }) {
       edges {
         node {
           id

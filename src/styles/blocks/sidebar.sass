@@ -1,14 +1,12 @@
 .sidebar
   @media screen and (min-width: 900px)
     display: grid
+    grid-template-columns: 1fr 1fr
     align-items: center
-    grid-template-areas: 'title menu' 'intro menu'
-    padding-left: 1em
-    padding-right: 1em
+    padding: 0.5em 1em
 
   .sidebar__title
     margin-bottom: 20px
-    grid-area: title
 
   a
     font-size: 18px
@@ -22,7 +20,6 @@
   display: grid
   justify-content: flex-start
   align-items: center
-  grid-area: intro
   color: $light-body-color
   font-size: 14px
 
@@ -33,7 +30,6 @@
       margin-bottom: 0
 
 .sidebar__menu
-  grid-area: menu
   display: grid
   grid-gap: 0.5em
   padding-bottom: 0.5em

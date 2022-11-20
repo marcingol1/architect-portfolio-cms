@@ -29,6 +29,7 @@ body
 
 @media screen and (min-width: 900px)
   .container
+    position: relative
     padding: 0
     height: 100vh
     display: flex
@@ -38,12 +39,14 @@ body
     display: none
 
   .container__sidebar
-    position: relative
+    position: absolute
+    top: 0
+    backdrop-filter: blur(10px)
+    min-height: 64px
+    z-index: 1
     width: 100%
     min-width: 320px
     box-sizing: border-box
-    padding: 0.3em
-    background-color: $light-bg-color
 
   .container__body
     flex: 1

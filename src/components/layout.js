@@ -42,7 +42,7 @@ const TemplateWrapper = ({ children }) => {
             introText
             copyright
           }
-          allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
+          allDatoCmsSocialProfile(sort: { position: ASC }) {
             edges {
               node {
                 profileType

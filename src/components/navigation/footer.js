@@ -20,7 +20,7 @@ function Footer({ allDatoCmsSocialProfile, datoCmsHome, datoCmsAboutPage }) {
       <div className="footer__info">
         <div className="footer__logo">
           {datoCmsAboutPage.logoGallery.map((photo) => {
-            return <Img fluid={photo.fluid} key={photo.fluid.key} />;
+            return <Img fluid={photo.fluid} key={photo.fluid.src} />;
           })}
         </div>
         <div>{datoCmsAboutPage.logoText}</div>
