@@ -1826,7 +1826,7 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@react-three/fiber@8.9.1", "@react-three/fiber@latest":
+"@react-three/fiber@latest":
   version "8.9.1"
   resolved "https://registry.npmjs.org/@react-three/fiber/-/fiber-8.9.1.tgz"
   integrity sha512-xRMO9RGp0DkxSFu5BmmkjCxJ4r0dEpLobtxXdZwI0h2rZZaCnkPM5zThRN8xaZNbZhzRSVICeNOFaZltr9xFyQ==
@@ -2165,13 +2165,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/three@0.146.0":
-  version "0.146.0"
-  resolved "https://registry.npmjs.org/@types/three/-/three-0.146.0.tgz"
-  integrity sha512-75AgysUrIvTCB054eQa2pDVFurfeFW8CrMQjpzjt3yHBfuuknoSvvsESd/3EhQxPrz9si3+P0wiDUVsWUlljfA==
-  dependencies:
-    "@types/webxr" "*"
-
 "@types/tmp@^0.0.33":
   version "0.0.33"
   resolved "https://registry.npmjs.org/@types/tmp/-/tmp-0.0.33.tgz"
@@ -2181,11 +2174,6 @@
   version "2.0.6"
   resolved "https://registry.npmjs.org/@types/unist/-/unist-2.0.6.tgz"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
-
-"@types/webxr@*":
-  version "0.5.0"
-  resolved "https://registry.npmjs.org/@types/webxr/-/webxr-0.5.0.tgz"
-  integrity sha512-IUMDPSXnYIbEO2IereEFcgcqfDREOgmbGqtrMpVPpACTU6pltYLwHgVkrnYv0XhWEcjio9sYEfIEzgn3c7nDqA==
 
 "@types/yoga-layout@1.9.2":
   version "1.9.2"
@@ -10540,11 +10528,6 @@ text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
-
-three@0.146.0:
-  version "0.146.0"
-  resolved "https://registry.npmjs.org/three/-/three-0.146.0.tgz"
-  integrity sha512-1lvNfLezN6OJ9NaFAhfX4sm5e9YCzHtaRgZ1+B4C+Hv6TibRMsuBAM5/wVKzxjpYIlMymvgsHEFrrigEfXnb2A==
 
 through@^2.3.6:
   version "2.3.8"

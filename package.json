@@ -6,8 +6,6 @@
   "dependencies": {
     "@fontsource/montserrat": "4.0.1",
     "@fontsource/philosopher": "4.2.1",
-    "@react-three/fiber": "8.9.1",
-    "@types/three": "0.146.0",
     "dotenv": "16.0.3",
     "gatsby": "5.0.1",
     "gatsby-image": "3.11.0",
@@ -25,8 +23,7 @@
     "react-masonry-component": "6.3.0",
     "react-slick": "0.29.0",
     "react-three-fiber": "6.0.13",
-    "slick-carousel": "1.8.1",
-    "three": "0.146.0"
+    "slick-carousel": "1.8.1"
   },
   "keywords": [
     "gatsby"
