@@ -31,7 +31,8 @@ body
   .container
     position: relative
     padding: 0
-    height: 100vh
+    padding-top: 4em
+    height: calc(100vh - 4em)
     display: flex
     flex-direction: column
 
@@ -41,7 +42,6 @@ body
   .container__sidebar
     position: absolute
     top: 0
-    backdrop-filter: blur(10px)
     min-height: 64px
     z-index: 1
     width: 100%

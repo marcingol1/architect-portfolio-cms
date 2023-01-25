@@ -1,6 +1,5 @@
 .sheet
-  margin-top: 3em
-  padding: 4em 2em
+  padding: 2em
   background-color: white
 
 .sheet__inner
@@ -9,9 +8,10 @@
   grid-template-columns: 1fr
   grid-template-areas: 'gallery' 'container'
 
-  @media screen and (min-width: 900px)
-    grid-template-columns: 2fr 1fr
-    grid-template-areas: 'gallery container'
+.sheet__inner-contact
+  display: grid
+  grid-gap: 2em
+  grid-template-columns: 1fr 1fr
 
 .sheet__container
   grid-area: 'container'
@@ -29,7 +29,7 @@
   margin-bottom: 30px
   font-weight: bold
   color: $dark-body-color
-  line-height: 1
+  line-height: 1em
 
 .sheet__lead
   font-size: 16px
@@ -37,8 +37,12 @@
 
 .sheet__gallery,
 .sheet__slider
-  margin-bottom: 10px
-  max-width: 60vw
+  margin-bottom: 1em
+  width: 90vw
+  min-height: 20vh
+
+.sheet__header-image
+  margin-bottom: 1em
 
 .sheet__body
   color: $light-body-color
@@ -83,6 +87,9 @@
 @media screen and (min-width: 900px)
   .sheet
     padding: 40px 60px
+
+  .sheet__wrapper
+    padding-top: 6em
 
   .sheet__title
     font-size: 48px

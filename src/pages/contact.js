@@ -7,10 +7,10 @@ import Layout from '../components/layout';
 const Contact = ({ data: { contact } }) => {
   return (
     <Layout>
-      <article className="sheet">
+      <article className="sheet sheet__wrapper">
         <HelmetDatoCms seo={contact.seoMetaTags} />
-        <div className="sheet__inner">
-          <div className="sheet__gallery">
+        <div className="sheet__inner-contact">
+          <div className="sheet__header-image">
             <Img fluid={contact.photo.fluid} />
           </div>
           <div className="sheet__container">

@@ -58,11 +58,7 @@ const TemplateWrapper = ({ children }) => {
             favicon={data.datoCmsSite.faviconMetaTags}
             seo={data.datoCmsHome.seoMetaTags}
           />
-          <MainNavigation
-            datoCmsSite={data.datoCmsSite}
-            allDatoCmsSocialProfile={data.allDatoCmsSocialProfile}
-            datoCmsHome={data.datoCmsHome}
-          />
+          <MainNavigation />
           <div className="container__body">
             <div className="container__mobile-header">
               <div className="mobile-header">
