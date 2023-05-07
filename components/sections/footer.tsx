@@ -35,12 +35,6 @@ export function Footer() {
         >
           Email
         </Link>
-        <Link
-          href="/"
-          className="font-medium underline underline-offset-4 hover:text-black transition-colors"
-        >
-          Facebook / Messenger
-        </Link>
       </div>
 
       <div className="sm:absolute sm:bottom-0 w-full px-20 py-10 flex justify-between">
