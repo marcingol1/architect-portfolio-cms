@@ -16,6 +16,9 @@ datasource db {
 model projects {
   id        Int      @id @default(autoincrement())
   name      String   @unique
+  title     String
   desc      String
   createdAt DateTime @default(now())
+  mainImage String   @default("1.png")
+  photos    Int      @default(3)
 }
