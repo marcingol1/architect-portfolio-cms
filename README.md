@@ -1,17 +1,41 @@
-# Architect portfolio.
+# Anna Gol — Pracownia Architektury
 
-# Application uses:
+Portfolio pracowni architektonicznej zbudowane jako w pełni statyczna strona **bez CMS**.
+Cała treść mieszka w repozytorium, a grafiki projektów są rysowane w kodzie (SVG) —
+strona nie ma żadnych zewnętrznych zależności w czasie działania.
 
-- ## Netlify deployment for DNS resolving for custom domain
-  ![Netlify deployment](./documentation/netlify.png)
-- ## Gatsby Cloud for seamless integration with Gatsby application and DatoCMS
-  ![Gastsby Cloud](./documentation/gatsby.png)
-- ## DatoCMS for managing content within application without need to deploy
-  ![DatoCMS](./documentation/datocms.png)
+Live: https://architektgol.pl/
 
-All of that provide free template for mantaining robust solution with only cost of a domain.
+## Stack
 
-## To view site online, visit: https://architektgol.pl/
+- [Gatsby 5](https://www.gatsbyjs.com/) (React 18, statyczny build)
+- SCSS (`gatsby-plugin-sass`)
+- Fonty self-hosted: Space Grotesk + Inter (`@fontsource/*`)
+- Zero CMS, zero zewnętrznych obrazków, zero trackingu
 
-Created from official Gatsby template as a base.
-This repo contains a static website written with [GatsbyJS](https://www.gatsbyjs.org/), integrated with content coming from [DatoCMS](https://www.datocms.com).
+## Edycja treści
+
+| Co | Gdzie |
+| --- | --- |
+| Projekty (tytuły, opisy, dane, kategorie) | `src/data/projects.js` |
+| Grafiki projektów (warianty SVG) | `src/components/project-art.js` |
+| Teksty strony głównej / pracowni / kontaktu | `src/pages/*.js` |
+| Dane kontaktowe i stopka | `src/components/layout.js` |
+| Kolory, typografia, layout | `src/styles/main.scss` |
+
+Nowy projekt = nowy wpis w `src/data/projects.js` (pole `variant` wybiera jedną
+z grafik: `villa`, `housing`, `museum`, `pavilion`, `tower`, `barn`; `accent` to
+kolor akcentu). Podstrona `/realizacje/<slug>/` generuje się automatycznie
+w `gatsby-node.js`.
+
+## Development
+
+```bash
+npm install
+npm run develop   # http://localhost:8000
+npm run build     # produkcyjny build do public/
+npm run serve     # podgląd builda
+```
+
+Formularz kontaktowy jest przygotowany pod [Netlify Forms](https://docs.netlify.com/forms/setup/)
+(`data-netlify="true"`) — działa od razu po wdrożeniu na Netlify, bez backendu.

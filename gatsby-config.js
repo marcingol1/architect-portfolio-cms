@@ -1,24 +1,16 @@
-require('dotenv').config();
-
 module.exports = {
   siteMetadata: {
-    title: `Architect Portfolio`,
+    title: `Anna Gol — Pracownia Architektury`,
+    description: `Autorska pracownia architektoniczna. Domy jednorodzinne, zespoły mieszkaniowe i obiekty użyteczności publicznej — od koncepcji po nadzór autorski.`,
+    siteUrl: `https://architektgol.pl`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
-    `gatsby-transformer-remark`,
-    {
-      resolve: `gatsby-source-datocms`,
-      options: {
-        apiToken: process.env.DATO_API_TOKEN,
-      },
-    },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /assets/, // See below to configure properly
+          include: /assets/,
         },
       },
     },
