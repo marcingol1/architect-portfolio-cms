@@ -19,6 +19,7 @@
   ],
   "license": "MIT",
   "main": "n/a",
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",

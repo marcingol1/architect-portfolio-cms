@@ -31,10 +31,10 @@ w `gatsby-node.js`.
 ## Development
 
 ```bash
-npm install
-npm run develop   # http://localhost:8000
-npm run build     # produkcyjny build do public/
-npm run serve     # podgląd builda
+pnpm install
+pnpm develop   # http://localhost:8000
+pnpm build     # produkcyjny build do public/
+pnpm serve     # podgląd builda
 ```
 
 Formularz kontaktowy jest przygotowany pod [Netlify Forms](https://docs.netlify.com/forms/setup/)

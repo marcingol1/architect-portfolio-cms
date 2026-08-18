@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import Reveal from '../components/reveal';
+import Testimonial from '../components/testimonial';
 
 const PROCESS = [
   {
@@ -92,6 +93,12 @@ const PracowniaPage = () => (
         ))}
       </div>
     </section>
+
+    <Testimonial
+      quote="Baliśmy się, że architekt narzuci nam swój dom. Anna przez trzy pierwsze spotkania nie narysowała ani kreski — tylko słuchała. Dom, w którym mieszkamy, jest dokładnie nasz, tylko mądrzejszy."
+      author="Inwestorzy prywatni"
+      role="Dom pod Sosnami, Konstancin-Jeziorna"
+    />
 
     <section className="section">
       <Reveal className="section__head">

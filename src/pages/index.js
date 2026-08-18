@@ -5,6 +5,7 @@ import Layout from '../components/layout';
 import Seo from '../components/seo';
 import Reveal from '../components/reveal';
 import ProjectArt from '../components/project-art';
+import Marquee from '../components/marquee';
 import { projects } from '../data/projects';
 
 const SERVICES = [
@@ -85,8 +86,8 @@ const IndexPage = () => {
       <section className="section">
         <Reveal className="section__head">
           <h2 className="section__title">Wybrane realizacje</h2>
-          <Link to="/realizacje/" className="section__more">
-            Wszystkie projekty →
+          <Link to="/realizacje/" className="arrow-link">
+            Wszystkie projekty
           </Link>
         </Reveal>
         <div className="feature-list">
@@ -115,13 +116,24 @@ const IndexPage = () => {
                     {project.categoryLabel} · {project.location} · {project.year}
                   </p>
                   <p className="feature__excerpt">{project.excerpt}</p>
-                  <span className="feature__cta">Zobacz projekt →</span>
+                  <span className="arrow-link">Zobacz projekt</span>
                 </div>
               </Link>
             </Reveal>
           ))}
         </div>
       </section>
+
+      <Marquee
+        items={[
+          'Domy jednorodzinne',
+          'Zespoły mieszkaniowe',
+          'Użyteczność publiczna',
+          'Konkursy',
+          'Wnętrza',
+          'Nadzór autorski',
+        ]}
+      />
 
       <section className="manifest" id="pracownia">
         <Reveal>
@@ -131,8 +143,8 @@ const IndexPage = () => {
             z&nbsp;trzech materiałów zamiast trzynastu i&nbsp;za pięćdziesiąt lat
             będzie wyglądał lepiej niż w&nbsp;dniu odbioru.
           </blockquote>
-          <Link to="/pracownia/" className="manifest__link">
-            Poznaj pracownię →
+          <Link to="/pracownia/" className="arrow-link arrow-link--light">
+            Poznaj pracownię
           </Link>
         </Reveal>
       </section>

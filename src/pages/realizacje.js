@@ -28,18 +28,25 @@ const RealizacjePage = () => {
             role="group"
             aria-label="Filtruj projekty według kategorii"
           >
-            {categories.map((cat) => (
-              <button
-                key={cat.key}
-                className={`filters__button ${
-                  filter === cat.key ? 'is-active' : ''
-                }`}
-                onClick={() => setFilter(cat.key)}
-                aria-pressed={filter === cat.key}
-              >
-                {cat.label}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const count =
+                cat.key === 'wszystkie'
+                  ? projects.length
+                  : projects.filter((p) => p.category === cat.key).length;
+              return (
+                <button
+                  key={cat.key}
+                  className={`filters__button ${
+                    filter === cat.key ? 'is-active' : ''
+                  }`}
+                  onClick={() => setFilter(cat.key)}
+                  aria-pressed={filter === cat.key}
+                >
+                  {cat.label}
+                  <sup className="filters__count">{count}</sup>
+                </button>
+              );
+            })}
           </div>
         </Reveal>
       </header>

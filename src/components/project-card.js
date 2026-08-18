@@ -12,6 +12,9 @@ function ProjectCard({ project, index }) {
           title={project.title}
           className="project-card__art"
         />
+        <span className="project-card__hint" aria-hidden="true">
+          →
+        </span>
       </div>
       <div className="project-card__body">
         <div className="project-card__row">

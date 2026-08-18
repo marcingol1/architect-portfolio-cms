@@ -153,8 +153,17 @@ em {
   }
 }
 
+// widoczny stan focus dla klawiatury — spójny na całej stronie
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
   padding: 0.95rem 2.2rem;
   background: var(--accent);
   color: var(--paper);
@@ -166,9 +175,64 @@ em {
   border: 1px solid var(--accent);
   transition: background 0.25s ease, color 0.25s ease;
 
+  &::after {
+    content: '→';
+    letter-spacing: 0;
+    transition: transform 0.25s ease;
+  }
+
   &:hover {
     background: transparent;
     color: var(--accent);
+
+    &::after {
+      transform: translateX(5px);
+    }
+  }
+}
+
+// link z animowaną strzałką — wspólny wzorzec CTA
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--line-strong);
+  transition: color 0.2s ease, border-color 0.2s ease;
+
+  &::after {
+    content: '→';
+    letter-spacing: 0;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+
+    &::after {
+      transform: translateX(5px);
+    }
+  }
+
+  &--light {
+    color: var(--paper);
+    border-color: rgba(244, 241, 234, 0.4);
+  }
+}
+
+a:hover .arrow-link,
+.feature__inner:hover .arrow-link {
+  color: var(--accent);
+  border-color: var(--accent);
+
+  &::after {
+    transform: translateX(5px);
   }
 }
 
@@ -442,17 +506,51 @@ em {
   font-size: clamp(1.8rem, 3.6vw, 2.8rem);
 }
 
-.section__more {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent);
-  white-space: nowrap;
+// ---------- pas typograficzny (marquee) ----------
+.marquee {
+  margin: 0 calc(50% - 50vw);
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
 
-  &:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 36s linear infinite;
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.2rem;
+  padding-right: 2.2rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.marquee__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--accent);
+  flex: none;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
   }
 }
 
@@ -478,13 +576,8 @@ em {
     }
   }
 
-  &:hover {
-    .feature__art {
-      transform: scale(1.03);
-    }
-    .feature__cta {
-      color: var(--accent);
-    }
+  &:hover .feature__art {
+    transform: scale(1.03);
   }
 }
 
@@ -526,16 +619,6 @@ em {
   margin-bottom: 1.4rem;
 }
 
-.feature__cta {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  border-bottom: 1px solid var(--line-strong);
-  padding-bottom: 0.2rem;
-  transition: color 0.2s ease;
-}
-
 // ---------- manifest ----------
 .manifest {
   // pełna szerokość mimo kontenera strony
@@ -561,19 +644,49 @@ em {
   margin: 1.6rem 0 2.2rem;
 }
 
-.manifest__link {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--paper);
-  border-bottom: 1px solid rgba(244, 241, 234, 0.4);
-  padding-bottom: 0.25rem;
+// ---------- cytat klienta ----------
+.testimonial {
+  position: relative;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vh, 5rem) 0 clamp(3rem, 8vh, 5rem) clamp(2.5rem, 6vw, 5rem);
+  border-top: 1px solid var(--line);
+}
 
-  &:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
+.testimonial__mark {
+  position: absolute;
+  left: 0;
+  top: clamp(2rem, 6vh, 3.4rem);
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 9vw, 7rem);
+  line-height: 1;
+  color: var(--accent);
+}
+
+.testimonial__quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.testimonial__caption {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.testimonial__author {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.testimonial__role {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
 }
 
 // ---------- usługi / proces ----------
@@ -639,6 +752,9 @@ em {
 }
 
 .filters__button {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
   font-family: var(--font-display);
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -655,7 +771,18 @@ em {
     background: var(--ink);
     color: var(--paper);
     border-color: var(--ink);
+
+    .filters__count {
+      color: var(--accent);
+    }
   }
+}
+
+.filters__count {
+  font-size: 0.68rem;
+  letter-spacing: 0;
+  color: var(--accent);
+  line-height: 1;
 }
 
 .works-grid {
@@ -679,8 +806,29 @@ em {
 }
 
 .project-card__media {
+  position: relative;
   border: 1px solid var(--line-strong);
   overflow: hidden;
+}
+
+.project-card__hint {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 1.1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-card__hint,
+.project-card:focus-visible .project-card__hint {
+  transform: none;
 }
 
 .project-card__art {
