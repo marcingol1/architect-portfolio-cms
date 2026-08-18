@@ -1,0 +1,16 @@
+---
+import { renderArt } from '../lib/project-art.js';
+
+const { variant, accent = '#C2502B', title, class: className } = Astro.props;
+const inner = renderArt(variant, accent);
+const label = title ? `Ilustracja projektu: ${title}` : 'Ilustracja projektu';
+---
+
+<svg
+  viewBox="0 0 800 600"
+  class={className}
+  role="img"
+  aria-label={label}
+  preserveAspectRatio="xMidYMid slice"
+  set:html={inner}
+/>

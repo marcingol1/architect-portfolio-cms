@@ -1,0 +1,173 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectArt from '../components/ProjectArt.astro';
+import Marquee from '../components/Marquee.astro';
+import { projects } from '../data/projects.js';
+
+const featured = projects.filter((p) => p.featured);
+const hero = featured[0];
+
+const SERVICES = [
+  {
+    title: 'Koncepcja',
+    text: 'Analiza miejsca, program, pierwsze szkice. Etap, na którym zapada dziewięćdziesiąt procent decyzji o tym, jaki będzie dom.',
+  },
+  {
+    title: 'Projekt budowlany i wykonawczy',
+    text: 'Kompletna dokumentacja z pozwoleniem na budowę, skoordynowana ze wszystkimi branżami — bez niespodzianek na budowie.',
+  },
+  {
+    title: 'Wnętrza',
+    text: 'Projektujemy wnętrza razem z bryłą, nie po niej. Ten sam język materiałów od elewacji po klamkę.',
+  },
+  {
+    title: 'Nadzór autorski',
+    text: 'Jesteśmy na budowie do końca. Projekt kończy się odbiorem kluczy, nie oddaniem rysunków.',
+  },
+];
+---
+
+<Base>
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="reveal">
+        <p class="kicker">Pracownia architektury — Warszawa</p>
+        <h1 class="hero__title">
+          Architektura zaczyna się <em>od miejsca</em>, nie od formy.
+        </h1>
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s">
+        <div class="hero__meta">
+          <p class="hero__lead">
+            Projektujemy domy, zespoły mieszkaniowe i&nbsp;obiekty publiczne,
+            które porządkują przestrzeń zamiast z&nbsp;nią konkurować — od
+            pierwszego szkicu po nadzór na budowie.
+          </p>
+          <dl class="hero__stats">
+            <div>
+              <dt>Lat praktyki</dt>
+              <dd>14</dd>
+            </div>
+            <div>
+              <dt>Zrealizowanych projektów</dt>
+              <dd>40+</dd>
+            </div>
+            <div>
+              <dt>Nagród i wyróżnień</dt>
+              <dd>6</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="hero__media reveal" style="transition-delay: 0.15s">
+      <a href={`/realizacje/${hero.slug}/`} class="hero__media-link">
+        <ProjectArt
+          variant={hero.variant}
+          accent={hero.accent}
+          title={hero.title}
+          class="hero__art"
+        />
+        <span class="hero__media-caption">
+          <span>{hero.title}</span>
+          <span>{hero.location}, {hero.year} →</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__head reveal">
+      <h2 class="section__title">Wybrane realizacje</h2>
+      <a href="/realizacje/" class="arrow-link">Wszystkie projekty</a>
+    </div>
+    <div class="feature-list">
+      {
+        featured.map((project, i) => (
+          <div class="feature reveal" style="transition-delay: 0.05s">
+            <a
+              href={`/realizacje/${project.slug}/`}
+              class:list={[
+                'feature__inner',
+                { 'feature__inner--flip': i % 2 === 1 },
+              ]}
+            >
+              <div class="feature__media">
+                <ProjectArt
+                  variant={project.variant}
+                  accent={project.accent}
+                  title={project.title}
+                  class="feature__art"
+                />
+              </div>
+              <div class="feature__body">
+                <span class="feature__index">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 class="feature__title">{project.title}</h3>
+                <p class="feature__meta">
+                  {project.categoryLabel} · {project.location} · {project.year}
+                </p>
+                <p class="feature__excerpt">{project.excerpt}</p>
+                <span class="arrow-link">Zobacz projekt</span>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <Marquee
+    items={[
+      'Domy jednorodzinne',
+      'Zespoły mieszkaniowe',
+      'Użyteczność publiczna',
+      'Konkursy',
+      'Wnętrza',
+      'Nadzór autorski',
+    ]}
+  />
+
+  <section class="manifest" id="pracownia">
+    <div class="reveal">
+      <p class="kicker kicker--light">Manifest</p>
+      <blockquote class="manifest__quote">
+        Dobry budynek nie krzyczy. Stoi we właściwym miejscu, jest zbudowany
+        z&nbsp;trzech materiałów zamiast trzynastu i&nbsp;za pięćdziesiąt lat
+        będzie wyglądał lepiej niż w&nbsp;dniu odbioru.
+      </blockquote>
+      <a href="/pracownia/" class="arrow-link arrow-link--light">
+        Poznaj pracownię
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__head reveal">
+      <h2 class="section__title">Zakres pracy</h2>
+    </div>
+    <div class="services">
+      {
+        SERVICES.map((service, i) => (
+          <div class="service reveal" style={`transition-delay: ${i * 0.05}s`}>
+            <span class="service__index">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="service__title">{service.title}</h3>
+            <p class="service__text">{service.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="reveal">
+      <h2 class="cta-band__title">
+        Masz działkę i&nbsp;pomysł?
+        <br />
+        <em>Porozmawiajmy.</em>
+      </h2>
+      <a href="/kontakt/" class="button">Umów rozmowę</a>
+    </div>
+  </section>
+</Base>

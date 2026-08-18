@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects, categories } from '../../data/projects.js';
+
+const counts = Object.fromEntries(
+  categories.map((cat) => [
+    cat.key,
+    cat.key === 'wszystkie'
+      ? projects.length
+      : projects.filter((p) => p.category === cat.key).length,
+  ])
+);
+---
+
+<Base
+  title="Realizacje"
+  description="Domy jednorodzinne, zespoły mieszkaniowe i obiekty użyteczności publicznej — wybrane realizacje pracowni."
+>
+  <header class="page-head">
+    <div class="reveal">
+      <p class="kicker">Realizacje</p>
+      <h1 class="page-head__title">
+        {projects.length} projektów, jeden sposób myślenia.
+      </h1>
+    </div>
+    <div class="reveal" style="transition-delay: 0.08s">
+      <div
+        class="filters"
+        id="filters"
+        role="group"
+        aria-label="Filtruj projekty według kategorii"
+      >
+        {
+          categories.map((cat) => (
+            <button
+              class:list={[
+                'filters__button',
+                { 'is-active': cat.key === 'wszystkie' },
+              ]}
+              data-filter={cat.key}
+              aria-pressed={cat.key === 'wszystkie' ? 'true' : 'false'}
+            >
+              {cat.label}
+              <sup class="filters__count">{counts[cat.key]}</sup>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </header>
+
+  <section class="works-grid" id="works-grid" aria-live="polite">
+    {
+      projects.map((project, i) => (
+        <div class="reveal" style={`transition-delay: ${(i % 2) * 0.06}s`}>
+          <ProjectCard project={project} index={i} />
+        </div>
+      ))
+    }
+  </section>
+</Base>
+
+<script>
+  // Filtrowanie po kategorii — czysty JS, karty są już w HTML-u.
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('.works-grid > div');
+  buttons.forEach((button) =>
+    button.addEventListener('click', () => {
+      const key = button.dataset.filter;
+      buttons.forEach((b) => {
+        const active = b === button;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      cards.forEach((wrap) => {
+        const card = wrap.querySelector<HTMLElement>('.project-card');
+        const show = key === 'wszystkie' || card?.dataset.category === key;
+        wrap.style.display = show ? '' : 'none';
+      });
+    })
+  );
+</script>

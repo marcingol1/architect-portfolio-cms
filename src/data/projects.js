@@ -1,7 +1,7 @@
 // Lokalne dane portfolio — bez CMS. Edycja treści = edycja tego pliku.
 // Pola `variant` i `accent` sterują generowaną grafiką projektu (ProjectArt).
 
-const projects = [
+export const projects = [
   {
     slug: 'dom-pod-sosnami',
     title: 'Dom pod Sosnami',
@@ -172,11 +172,9 @@ const projects = [
   },
 ];
 
-const categories = [
+export const categories = [
   { key: 'wszystkie', label: 'Wszystkie' },
   { key: 'domy', label: 'Domy' },
   { key: 'mieszkaniowe', label: 'Mieszkaniowe' },
   { key: 'publiczne', label: 'Publiczne' },
 ];
-
-module.exports = { projects, categories };

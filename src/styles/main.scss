@@ -237,10 +237,14 @@ a:hover .arrow-link,
 }
 
 // ---------- animacja reveal ----------
+// Stany ukryte tylko gdy działa JS (html.has-js) — bez JS treść jest widoczna.
 .reveal {
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+html.has-js .reveal {
   opacity: 0;
   transform: translateY(26px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
 
   &.is-visible {
     opacity: 1;
@@ -252,7 +256,7 @@ a:hover .arrow-link,
   html {
     scroll-behavior: auto;
   }
-  .reveal {
+  html.has-js .reveal {
     opacity: 1;
     transform: none;
     transition: none;
@@ -279,7 +283,7 @@ a:hover .arrow-link,
   align-items: center;
 }
 
-.topbar__logo {
+.topbar__logo svg {
   height: 40px;
   width: auto;
 }
@@ -1284,7 +1288,7 @@ a:hover .arrow-link,
     display: flex;
   }
 
-  .topbar__logo {
+  .topbar__logo svg {
     height: 32px;
   }
 

@@ -1,0 +1,12 @@
+---
+const { quote, author, role } = Astro.props;
+---
+
+<figure class="testimonial reveal">
+  <span class="testimonial__mark" aria-hidden="true">„</span>
+  <blockquote class="testimonial__quote">{quote}</blockquote>
+  <figcaption class="testimonial__caption">
+    <span class="testimonial__author">{author}</span>
+    <span class="testimonial__role">{role}</span>
+  </figcaption>
+</figure>
