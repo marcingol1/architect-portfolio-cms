@@ -46,7 +46,7 @@ const isActive = (to) => path === to || path.startsWith(to);
     <link rel="icon" href={favicon} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script is:inline>
-      // Znacznik dla progressive enhancement: animacje reveal tylko z JS.
+      // Progressive-enhancement flag: reveal animations only run with JS.
       document.documentElement.classList.add('has-js');
     </script>
   </head>
@@ -156,7 +156,7 @@ const isActive = (to) => path === to || path.startsWith(to);
     </div>
 
     <script>
-      // Menu mobilne
+      // Mobile menu
       const site = document.getElementById('site');
       const toggle = document.getElementById('menu-toggle');
       const menu = document.getElementById('mobile-menu');
@@ -174,7 +174,7 @@ const isActive = (to) => path === to || path.startsWith(to);
         })
       );
 
-      // Delikatne pojawianie się sekcji (.reveal); szanuje prefers-reduced-motion.
+      // Gentle section fade-in (.reveal); respects prefers-reduced-motion.
       const targets = document.querySelectorAll('.reveal');
       if (
         !('IntersectionObserver' in window) ||
