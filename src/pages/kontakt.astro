@@ -102,10 +102,18 @@ import Base from '../layouts/Base.astro';
     if (status) status.textContent = 'Wysyłanie…';
 
     try {
+      // Send url-encoded, not multipart: the serverless runtime parses
+      // application/x-www-form-urlencoded and JSON, but not multipart bodies.
+      const payload = new URLSearchParams();
+      new FormData(form).forEach((value, key) => payload.append(key, String(value)));
+
       const response = await fetch(form.action, {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        },
+        body: payload,
       });
       const result = await response.json().catch(() => ({}));
 

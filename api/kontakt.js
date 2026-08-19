@@ -20,8 +20,10 @@ const LIMITS = { name: 120, email: 200, message: 5000 };
 const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
 
 function readBody(req) {
-  const body = req.body;
+  let body = req.body;
   if (!body) return {};
+  // Unrecognised content types arrive unparsed as a Buffer.
+  if (Buffer.isBuffer(body)) body = body.toString('utf8');
   if (typeof body === 'string') {
     try {
       return JSON.parse(body);
