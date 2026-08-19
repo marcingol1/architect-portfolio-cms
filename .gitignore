@@ -1,11 +1,11 @@
-# Zależności
+# Dependencies
 node_modules
 
-# Build Astro
+# Astro build output
 dist/
 .astro/
 
-# Środowisko / system
+# Environment / system
 .env
 .DS_Store
 yarn-error.log

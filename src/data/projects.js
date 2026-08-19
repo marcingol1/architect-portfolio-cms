@@ -1,5 +1,5 @@
-// Lokalne dane portfolio — bez CMS. Edycja treści = edycja tego pliku.
-// Pola `variant` i `accent` sterują generowaną grafiką projektu (ProjectArt).
+// Local portfolio data — no CMS. Editing content = editing this file.
+// The `variant` and `accent` fields drive the generated project artwork (ProjectArt).
 
 export const projects = [
   {

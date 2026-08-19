@@ -1,4 +1,4 @@
-# Netlify: build Astro i przekierowania ze starych adresów (wersja Gatsby/DatoCMS).
+# Netlify: Astro build and redirects from the old URLs (Gatsby/DatoCMS version).
 [build]
   command = "pnpm build"
   publish = "dist"

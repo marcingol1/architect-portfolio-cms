@@ -62,7 +62,7 @@ const counts = Object.fromEntries(
 </Base>
 
 <script>
-  // Filtrowanie po kategorii — czysty JS, karty są już w HTML-u.
+  // Category filtering — plain JS, the cards are already in the HTML.
   const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
   const cards = document.querySelectorAll<HTMLElement>('.works-grid > div');
   buttons.forEach((button) =>
