@@ -1148,6 +1148,65 @@ html.has-js .reveal {
   }
 }
 
+// ---------- form status + result pages ----------
+.form-status {
+  margin-top: 1.2rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+
+  &:empty {
+    display: none;
+  }
+}
+
+.contact-form[data-state='sent'] .form-status {
+  color: var(--ink);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.8rem;
+}
+
+.contact-form[data-state='error'] .form-status {
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.8rem;
+}
+
+.contact-form[data-state='sending'] {
+  opacity: 0.72;
+}
+
+.form-result {
+  padding: clamp(4rem, 14vh, 8rem) 0;
+}
+
+.form-result__title {
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  max-width: 20ch;
+  margin: 1.4rem 0 1.2rem;
+}
+
+.form-result__text {
+  color: var(--muted);
+  max-width: 52ch;
+  margin-bottom: 2.4rem;
+
+  a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--line-strong);
+
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+  }
+}
+
+.form-result__actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 // ---------- 404 ----------
 .not-found {
   padding: clamp(4rem, 14vh, 8rem) 0;
@@ -1351,7 +1410,8 @@ html.has-js .reveal {
     gap: 0.8rem;
   }
 
-  .not-found__actions {
+  .not-found__actions,
+  .form-result__actions {
     flex-direction: column;
     align-items: flex-start;
   }

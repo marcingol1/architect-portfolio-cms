@@ -66,8 +66,52 @@ The sitemap is generated at build time by `@astrojs/sitemap`.
 
 ### Contact form
 
-The form in `src/pages/kontakt.astro` is still marked up for
-[Netlify Forms](https://docs.netlify.com/forms/setup/) (`data-netlify="true"`),
-which does nothing on Vercel — **submissions are not delivered yet**. It needs a
-handler: a Vercel serverless function under `api/`, or a third-party endpoint
-such as Formspree.
+The form on `/kontakt/` posts to `api/kontakt.js`, a Vercel Serverless Function
+that validates the submission and emails it on with
+[Resend](https://resend.com/). Both sides stay on free plans: Hobby includes
+serverless functions, and Resend's free tier covers 3 000 emails/month
+(100/day). The function has **no npm dependencies** — it calls Resend's REST API
+with the `fetch` built into Node.
+
+**Setup — no domain required**
+
+Sign up at [resend.com](https://resend.com/) with the address that should receive
+enquiries, then set two environment variables in
+*Vercel → Settings → Environment Variables*:
+
+| Variable | Example | Required |
+| --- | --- | --- |
+| `RESEND_API_KEY` | `re_...` | yes |
+| `CONTACT_TO` | your inbox, e.g. `you@gmail.com` | yes |
+| `CONTACT_FROM` | `Formularz <formularz@architektgol.pl>` | no — see below |
+
+Without `CONTACT_FROM` the function sends from Resend's shared
+`onboarding@resend.dev` sender, which needs no domain and no DNS records. While
+the account has no verified domain, Resend only delivers to the address the
+account was registered with, so keep `CONTACT_TO` equal to that address.
+
+Once you own a domain and verify it in Resend, set `CONTACT_FROM` to an address
+on it — that lifts the recipient restriction and makes messages arrive from your
+own address instead of `resend.dev`. No code change needed.
+
+`reply_to` always carries the visitor's address, so replying from your inbox
+answers the client directly regardless of which sender is used.
+
+Until the variables are set the function returns an error and the visitor is told
+to email directly — it fails visibly rather than silently swallowing messages.
+
+**How it behaves**
+
+- **With JavaScript:** submits in the background and shows an inline status
+  under the button; the page does not navigate and the fields are cleared.
+- **Without JavaScript:** the form posts normally and the function redirects to
+  `/kontakt/dziekujemy/` or `/kontakt/blad/`, both static pages. The form works
+  with JS disabled.
+- **Spam:** a hidden honeypot field (`bot-field`); when a bot fills it the
+  submission is silently accepted but never delivered. Field lengths are capped
+  server-side (name 120, email 200, message 5 000 characters).
+- `reply_to` is set to the sender, so replying from the inbox answers the client
+  directly.
+
+To swap Resend for another provider, replace `sendEmail()` in `api/kontakt.js` —
+it is the only provider-specific part of the file.

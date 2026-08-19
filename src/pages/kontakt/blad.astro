@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Nie udało się wysłać wiadomości"
+  description="Wysyłka formularza nie powiodła się — napisz do nas bezpośrednio."
+>
+  <section class="form-result">
+    <p class="kicker">Kontakt</p>
+    <h1 class="form-result__title">Wiadomość <em>nie wyszła</em>.</h1>
+    <p class="form-result__text">
+      Coś po naszej stronie nie zadziałało i&nbsp;wiadomość nie została wysłana.
+      Prosimy spróbować ponownie albo napisać bezpośrednio na
+      <a href="mailto:pracownia@architektgol.pl">pracownia@architektgol.pl</a>
+      — na pewno odpowiemy.
+    </p>
+    <div class="form-result__actions">
+      <a href="/kontakt/" class="button">Wróć do formularza</a>
+      <a href="tel:+48221234567" class="arrow-link">+48 22 123 45 67</a>
+    </div>
+  </section>
+</Base>
