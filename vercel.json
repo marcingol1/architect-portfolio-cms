@@ -1,4 +1,7 @@
 {
+  "framework": "astro",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
   "redirects": [
     { "source": "/works", "destination": "/realizacje/", "permanent": true },
     { "source": "/works/:path*", "destination": "/realizacje/", "permanent": true },
