@@ -1,5 +1,5 @@
-// Grafiki projektów generowane jako SVG (string) — bez frameworka.
-// Wspólny język: papier, cienka kreska "z plotera", jeden kolor akcentu.
+// Project artwork generated as SVG (string) — framework-free.
+// Shared language: paper, thin "plotter" line, a single accent color.
 
 const INK = 'var(--art-ink, #1c1a16)';
 const PAPER = 'var(--art-paper, #f4f1ea)';
@@ -238,7 +238,7 @@ const barn = (accent) => `
 
 const VARIANTS = { villa, housing, museum, pavilion, tower, barn };
 
-// Zwraca wnętrze elementu <svg viewBox="0 0 800 600"> dla danego wariantu.
+// Returns the inner markup of <svg viewBox="0 0 800 600"> for a given variant.
 export function renderArt(variant, accent = '#C2502B') {
   const draw = VARIANTS[variant] || villa;
   return `
