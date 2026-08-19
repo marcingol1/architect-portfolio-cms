@@ -73,16 +73,32 @@ serverless functions, and Resend's free tier covers 3 000 emails/month
 (100/day). The function has **no npm dependencies** — it calls Resend's REST API
 with the `fetch` built into Node.
 
-Set three environment variables in *Vercel → Settings → Environment Variables*:
+**Setup — no domain required**
 
-| Variable | Example | Notes |
+Sign up at [resend.com](https://resend.com/) with the address that should receive
+enquiries, then set two environment variables in
+*Vercel → Settings → Environment Variables*:
+
+| Variable | Example | Required |
 | --- | --- | --- |
-| `RESEND_API_KEY` | `re_...` | from resend.com |
-| `CONTACT_TO` | `pracownia@architektgol.pl` | where enquiries land |
-| `CONTACT_FROM` | `Formularz <formularz@architektgol.pl>` | domain must be verified in Resend |
+| `RESEND_API_KEY` | `re_...` | yes |
+| `CONTACT_TO` | your inbox, e.g. `you@gmail.com` | yes |
+| `CONTACT_FROM` | `Formularz <formularz@architektgol.pl>` | no — see below |
 
-Until they are set the function returns an error and the visitor is told to
-email directly — it fails visibly rather than silently swallowing messages.
+Without `CONTACT_FROM` the function sends from Resend's shared
+`onboarding@resend.dev` sender, which needs no domain and no DNS records. While
+the account has no verified domain, Resend only delivers to the address the
+account was registered with, so keep `CONTACT_TO` equal to that address.
+
+Once you own a domain and verify it in Resend, set `CONTACT_FROM` to an address
+on it — that lifts the recipient restriction and makes messages arrive from your
+own address instead of `resend.dev`. No code change needed.
+
+`reply_to` always carries the visitor's address, so replying from your inbox
+answers the client directly regardless of which sender is used.
+
+Until the variables are set the function returns an error and the visitor is told
+to email directly — it fails visibly rather than silently swallowing messages.
 
 **How it behaves**
 

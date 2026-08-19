@@ -7,10 +7,13 @@
 // - Resend's free plan covers 3 000 emails/month (100/day), far above what a
 //   studio contact form needs.
 //
-// Required environment variables (Vercel > Settings > Environment Variables):
-//   RESEND_API_KEY  API key from resend.com
-//   CONTACT_TO      recipient, e.g. pracownia@architektgol.pl
-//   CONTACT_FROM    verified sender, e.g. "Formularz <formularz@architektgol.pl>"
+// Environment variables (Vercel > Settings > Environment Variables):
+//   RESEND_API_KEY  required — API key from resend.com
+//   CONTACT_TO      required — recipient inbox
+//   CONTACT_FROM    optional — defaults to Resend's shared onboarding sender,
+//                   which needs no domain. Once a domain is verified in Resend,
+//                   set this to an address on it, e.g.
+//                   "Formularz <formularz@architektgol.pl>".
 
 const LIMITS = { name: 120, email: 200, message: 5000 };
 
@@ -49,12 +52,12 @@ function validate(fields) {
 async function sendEmail({ name, email, message }) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO;
-  const from = process.env.CONTACT_FROM;
+  // Works without owning a domain: Resend's shared sender needs no DNS setup.
+  // Unverified accounts may only deliver to the Resend account's own address.
+  const from = process.env.CONTACT_FROM || 'Formularz <onboarding@resend.dev>';
 
-  if (!apiKey || !to || !from) {
-    throw new Error(
-      'Missing RESEND_API_KEY, CONTACT_TO or CONTACT_FROM environment variable'
-    );
+  if (!apiKey || !to) {
+    throw new Error('Missing RESEND_API_KEY or CONTACT_TO environment variable');
   }
 
   const response = await fetch('https://api.resend.com/emails', {
