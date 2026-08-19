@@ -49,31 +49,88 @@ import Base from '../layouts/Base.astro';
     <div class="contact__form-wrap reveal" style="transition-delay: 0.08s">
       <form
         class="contact-form"
+        id="contact-form"
         name="kontakt"
         method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
+        action="/api/kontakt"
       >
-        <input type="hidden" name="form-name" value="kontakt" />
-        <p class="visually-hidden">
+        <p class="visually-hidden" aria-hidden="true">
           <label>
-            Nie wypełniaj tego pola: <input name="bot-field" />
+            Nie wypełniaj tego pola: <input name="bot-field" tabindex="-1" />
           </label>
         </p>
         <div class="contact-form__field">
           <label for="cf-name">Imię i nazwisko</label>
-          <input id="cf-name" name="name" type="text" required />
+          <input id="cf-name" name="name" type="text" maxlength="120" required />
         </div>
         <div class="contact-form__field">
           <label for="cf-email">Adres e-mail</label>
-          <input id="cf-email" name="email" type="email" required />
+          <input id="cf-email" name="email" type="email" maxlength="200" required />
         </div>
         <div class="contact-form__field">
           <label for="cf-message">Kilka słów o projekcie</label>
-          <textarea id="cf-message" name="message" rows="6" required></textarea>
+          <textarea
+            id="cf-message"
+            name="message"
+            rows="6"
+            maxlength="5000"
+            required></textarea>
         </div>
-        <button type="submit" class="button">Wyślij wiadomość</button>
+        <button type="submit" class="button" id="contact-submit">
+          Wyślij wiadomość
+        </button>
+        <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
 </Base>
+
+<script>
+  // Progressive enhancement: with JS the form posts in the background and shows
+  // an inline status. Without JS it submits normally and the API redirects to
+  // /kontakt/dziekujemy/ or /kontakt/blad/.
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('contact-status');
+  const submit = document.getElementById('contact-submit') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (event) => {
+    if (!form.reportValidity()) return;
+    event.preventDefault();
+
+    submit!.disabled = true;
+    form.dataset.state = 'sending';
+    if (status) status.textContent = 'Wysyłanie…';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok && result.ok) {
+        form.dataset.state = 'sent';
+        if (status) {
+          status.textContent =
+            'Dziękujemy — wiadomość dotarła. Odpowiadamy w ciągu dwóch dni roboczych.';
+        }
+        form.reset();
+      } else {
+        form.dataset.state = 'error';
+        if (status) {
+          status.textContent =
+            result.error || 'Nie udało się wysłać wiadomości. Spróbuj ponownie.';
+        }
+      }
+    } catch {
+      form.dataset.state = 'error';
+      if (status) {
+        status.textContent =
+          'Brak połączenia. Napisz bezpośrednio: pracownia@architektgol.pl';
+      }
+    } finally {
+      submit!.disabled = false;
+    }
+  });
+</script>
