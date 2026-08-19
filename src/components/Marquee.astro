@@ -1,0 +1,19 @@
+---
+// Typograficzny pas przewijany między sekcjami. Czysta animacja CSS,
+// zatrzymywana przy prefers-reduced-motion; dekoracja — ukryta przed czytnikami.
+const { items } = Astro.props;
+const doubled = [...items, ...items];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {
+      doubled.map((item) => (
+        <span class="marquee__item">
+          {item}
+          <span class="marquee__dot" />
+        </span>
+      ))
+    }
+  </div>
+</div>

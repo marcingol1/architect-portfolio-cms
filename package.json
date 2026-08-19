@@ -1,39 +1,34 @@
 {
-  "name": "postgres-prisma",
-  "repository": "https://github.com/vercel/examples.git",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "prisma generate && next dev",
-    "build": "prisma generate && prisma db push && prisma db seed && next build",
-    "start": "next start",
-    "lint": "next lint"
+  "name": "architect-portfolio",
+  "description": "Portfolio pracowni architektonicznej — static Astro site, no CMS",
+  "version": "3.0.0",
+  "author": "Marcin Gol",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": "22.x"
   },
-  "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  "packageManager": "pnpm@10.33.0",
+  "keywords": [
+    "astro",
+    "architecture",
+    "portfolio"
+  ],
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier --write \"src/**/*.{js,astro,scss}\""
   },
   "dependencies": {
-    "@prisma/client": "4.13.0",
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.37",
-    "@types/react-dom": "18.0.11",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
-    "ms": "^2.1.3",
-    "next": "13.3.2",
-    "postcss": "8.4.22",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.3.1",
-    "ts-node": "^10.9.1",
-    "typescript": "5.0.4"
+    "@astrojs/sitemap": "^3.2.0",
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/space-grotesk": "^5.1.0",
+    "astro": "^5.13.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.194",
-    "@types/ms": "^0.7.31",
-    "lodash": "^4.17.21",
-    "prisma": "^4.13.0",
-    "turbo": "^1.9.3"
+    "prettier": "^3.3.0",
+    "prettier-plugin-astro": "^0.14.0",
+    "sass": "^1.80.0"
   }
 }

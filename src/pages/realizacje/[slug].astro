@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectArt from '../../components/ProjectArt.astro';
+import { projects } from '../../data/projects.js';
+
+export function getStaticPaths() {
+  return projects.map((project, index) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+      next: projects[(index + 1) % projects.length],
+    },
+  }));
+}
+
+const { project, next } = Astro.props;
+---
+
+<Base title={project.title} description={project.excerpt}>
+  <article class="project">
+    <header class="page-head">
+      <div class="reveal">
+        <p class="kicker">
+          <a href="/realizacje/">Realizacje</a> / {project.categoryLabel}
+        </p>
+        <h1 class="page-head__title">{project.title}</h1>
+      </div>
+      <div class="reveal" style="transition-delay: 0.08s">
+        <ul class="project__strip">
+          <li>
+            <span>Lokalizacja</span>
+            {project.location}
+          </li>
+          <li>
+            <span>Rok</span>
+            {project.year}
+          </li>
+          <li>
+            <span>Skala</span>
+            {project.area}
+          </li>
+          <li>
+            <span>Status</span>
+            {project.status}
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="project__hero reveal">
+      <ProjectArt
+        variant={project.variant}
+        accent={project.accent}
+        title={project.title}
+        class="project__hero-art"
+      />
+    </div>
+
+    <div class="project__layout">
+      <aside class="project__facts reveal" style="transition-delay: 0.05s">
+        <h2 class="project__facts-title">Dane projektu</h2>
+        <dl>
+          {
+            project.facts.map(([label, value]) => (
+              <div class="project__fact">
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))
+          }
+          <div class="project__fact">
+            <dt>Program</dt>
+            <dd>{project.program}</dd>
+          </div>
+        </dl>
+      </aside>
+
+      <div class="project__content">
+        <p class="project__lead reveal">{project.excerpt}</p>
+        {
+          project.description.map((paragraph) => (
+            <p class="project__para reveal">{paragraph}</p>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="next-project reveal">
+      <p class="kicker">Następny projekt</p>
+      <a href={`/realizacje/${next.slug}/`} class="next-project__link">
+        <span class="next-project__title">{next.title} →</span>
+        <span class="next-project__media">
+          <ProjectArt
+            variant={next.variant}
+            accent={next.accent}
+            title={next.title}
+            class="next-project__art"
+          />
+        </span>
+      </a>
+    </div>
+  </article>
+</Base>
