@@ -1,0 +1,132 @@
+---
+import Base from '../layouts/Base.astro';
+import Testimonial from '../components/Testimonial.astro';
+
+const PROCESS = [
+  {
+    title: 'Rozmowa i miejsce',
+    text: 'Zaczynamy od wizyty na działce i długiej rozmowy — o tym, jak mieszkacie, a nie o tym, ile pokoi ma mieć dom. Z tego etapu wychodzi program, budżet i harmonogram.',
+  },
+  {
+    title: 'Koncepcja',
+    text: 'Dwie–trzy drogi projektowe pokazane na makietach i szkicach, nie na renderach. Wybieramy jedną i doprowadzamy ją do decyzji o pozwoleniu.',
+  },
+  {
+    title: 'Dokumentacja',
+    text: 'Projekt budowlany i wykonawczy skoordynowany ze wszystkimi branżami. Każdy detal, który zobaczycie w domu, jest wcześniej narysowany.',
+  },
+  {
+    title: 'Budowa',
+    text: 'Nadzór autorski od wbicia łopaty po odbiór. Jesteśmy na budowie co tydzień — projekt kończy się kluczami w Waszej ręce.',
+  },
+];
+
+const AWARDS = [
+  ['2023', 'Nagroda Roku SARP — nominacja, Muzeum Rzemiosła'],
+  ['2022', 'Property Design Awards — najlepszy budynek mieszkalny, Tarasy Nadodrze'],
+  ['2020', 'Architektura-murator — Dom Roku, wyróżnienie, Stodoła Mazury'],
+  ['2019', 'I nagroda w konkursie SARP na zespół mieszkaniowy Nadodrze'],
+  ['2018', 'I nagroda w konkursie na Muzeum Rzemiosła w Krakowie'],
+];
+---
+
+<Base
+  title="Pracownia"
+  description="Autorska pracownia architektoniczna Anny Gol — metoda pracy, zespół, nagrody."
+>
+  <header class="page-head">
+    <div class="reveal">
+      <p class="kicker">Pracownia</p>
+      <h1 class="page-head__title">
+        Mała pracownia, <em>duża uwaga</em> do każdego projektu.
+      </h1>
+    </div>
+  </header>
+
+  <section class="about">
+    <div class="about__intro reveal">
+      <p>
+        Pracownię prowadzi architektka Anna Gol — od 2011 roku, najpierw
+        w&nbsp;pojedynkę, dziś w&nbsp;pięcioosobowym zespole. Prowadzimy
+        równolegle najwyżej sześć projektów, bo tylko wtedy każdy z&nbsp;nich
+        dostaje tyle uwagi, ile wymaga.
+      </p>
+      <p>
+        Nie mamy stylu, który powielamy — mamy metodę. Każdy projekt zaczyna
+        się od miejsca: nasłonecznienia, sąsiedztwa, tego, co na działce już
+        rośnie. Forma jest odpowiedzią, nigdy punktem wyjścia. Stąd w&nbsp;naszym
+        portfolio czarna stodoła nad jeziorem stoi obok betonowego muzeum
+        — i&nbsp;oba budynki są nasze.
+      </p>
+    </div>
+
+    <div class="about__values reveal" style="transition-delay: 0.08s">
+      <ul>
+        <li>
+          <strong>Trzy materiały, nie trzynaście.</strong> Ograniczenie palety
+          to najtańszy sposób na spokój i trwałość architektury.
+        </li>
+        <li>
+          <strong>Detal rysujemy, nie obiecujemy.</strong> Jeśli czegoś nie ma
+          na rysunku wykonawczym, na budowie tego nie będzie.
+        </li>
+        <li>
+          <strong>Budynek ma się starzeć z godnością.</strong> Projektujemy
+          na dekady — z materiałów, które pięknieją, a nie niszczeją.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__head reveal">
+      <h2 class="section__title">Jak pracujemy</h2>
+    </div>
+    <div class="services">
+      {
+        PROCESS.map((step, i) => (
+          <div class="service reveal" style={`transition-delay: ${i * 0.05}s`}>
+            <span class="service__index">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="service__title">{step.title}</h3>
+            <p class="service__text">{step.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <Testimonial
+    quote="Baliśmy się, że architekt narzuci nam swój dom. Anna przez trzy pierwsze spotkania nie narysowała ani kreski — tylko słuchała. Dom, w którym mieszkamy, jest dokładnie nasz, tylko mądrzejszy."
+    author="Inwestorzy prywatni"
+    role="Dom pod Sosnami, Konstancin-Jeziorna"
+  />
+
+  <section class="section">
+    <div class="section__head reveal">
+      <h2 class="section__title">Nagrody i wyróżnienia</h2>
+    </div>
+    <div class="reveal">
+      <ul class="awards">
+        {
+          AWARDS.map(([year, text]) => (
+            <li class="awards__item">
+              <span class="awards__year">{year}</span>
+              <span>{text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="reveal">
+      <h2 class="cta-band__title">
+        Zobacz, jak ta metoda
+        <br />
+        wygląda <em>w praktyce</em>.
+      </h2>
+      <a href="/realizacje/" class="button">Przejdź do realizacji</a>
+    </div>
+  </section>
+</Base>

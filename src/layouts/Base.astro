@@ -1,0 +1,200 @@
+---
+import logo from '../assets/header_logo.svg?raw';
+
+import '@fontsource/space-grotesk/400.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '../styles/main.scss';
+
+const SITE_TITLE = 'Anna Gol — Pracownia Architektury';
+const SITE_DESCRIPTION =
+  'Autorska pracownia architektoniczna. Domy jednorodzinne, zespoły mieszkaniowe i obiekty użyteczności publicznej — od koncepcji po nadzór autorski.';
+
+const { title, description } = Astro.props;
+const fullTitle = title ? `${title} — ${SITE_TITLE}` : SITE_TITLE;
+const desc = description || SITE_DESCRIPTION;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const favicon = `data:image/svg+xml,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#f4f1ea"/><rect x="6" y="6" width="20" height="20" fill="none" stroke="#1c1a16" stroke-width="2"/><rect x="11" y="16" width="10" height="10" fill="#c2502b"/></svg>'
+)}`;
+
+const NAV_LINKS = [
+  { to: '/realizacje/', label: 'Realizacje' },
+  { to: '/pracownia/', label: 'Pracownia' },
+  { to: '/kontakt/', label: 'Kontakt' },
+];
+const path = Astro.url.pathname;
+const isActive = (to) => path === to || path.startsWith(to);
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="theme-color" content="#f4f1ea" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={favicon} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script is:inline>
+      // Znacznik dla progressive enhancement: animacje reveal tylko z JS.
+      document.documentElement.classList.add('has-js');
+    </script>
+  </head>
+  <body>
+    <div class="site" id="site">
+      <a class="skip-link" href="#tresc">Przejdź do treści</a>
+
+      <header class="topbar">
+        <a href="/" class="topbar__brand" aria-label="Anna Gol — strona główna">
+          <span class="topbar__logo" set:html={logo} />
+        </a>
+
+        <nav class="topbar__nav" aria-label="Nawigacja główna">
+          {
+            NAV_LINKS.map((link) => (
+              <a
+                href={link.to}
+                class:list={['topbar__link', { 'is-active': isActive(link.to) }]}
+                aria-current={isActive(link.to) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <button
+          class="topbar__burger"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-label="Otwórz menu"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <nav aria-label="Nawigacja mobilna">
+          {
+            NAV_LINKS.map((link, i) => (
+              <a
+                href={link.to}
+                class="mobile-menu__link"
+                style={`transition-delay: ${0.05 + i * 0.06}s`}
+              >
+                <span class="mobile-menu__index">0{i + 1}</span>
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+        <div class="mobile-menu__meta">
+          <a href="mailto:pracownia@architektgol.pl">pracownia@architektgol.pl</a>
+        </div>
+      </div>
+
+      <main id="tresc" class="site__main">
+        <slot />
+      </main>
+
+      <footer class="footer">
+        <div class="footer__inner">
+          <div class="footer__brand">
+            <p class="footer__wordmark">Anna Gol</p>
+            <p class="footer__tagline">Pracownia Architektury</p>
+          </div>
+
+          <div class="footer__columns">
+            <div class="footer__col">
+              <h3 class="footer__heading">Pracownia</h3>
+              <p>
+                ul. Wspólna 12/4
+                <br />
+                00-680 Warszawa
+              </p>
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__heading">Kontakt</h3>
+              <p>
+                <a href="mailto:pracownia@architektgol.pl">
+                  pracownia@architektgol.pl
+                </a>
+                <br />
+                <a href="tel:+48221234567">+48 22 123 45 67</a>
+              </p>
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__heading">Obserwuj</h3>
+              <p>
+                <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+                  Instagram
+                </a>
+                <br />
+                <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+                  LinkedIn
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>© {new Date().getFullYear()} Anna Gol. Wszelkie prawa zastrzeżone.</span>
+          <span class="footer__coords">52°13′47″N 21°00′42″E</span>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Menu mobilne
+      const site = document.getElementById('site');
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      toggle?.addEventListener('click', () => {
+        const open = site!.classList.toggle('site--menu-open');
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
+        menu?.setAttribute('aria-hidden', String(!open));
+      });
+      menu?.querySelectorAll('a').forEach((link) =>
+        link.addEventListener('click', () => {
+          site!.classList.remove('site--menu-open');
+          toggle?.setAttribute('aria-expanded', 'false');
+          menu.setAttribute('aria-hidden', 'true');
+        })
+      );
+
+      // Delikatne pojawianie się sekcji (.reveal); szanuje prefers-reduced-motion.
+      const targets = document.querySelectorAll('.reveal');
+      if (
+        !('IntersectionObserver' in window) ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        targets.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
+        targets.forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>

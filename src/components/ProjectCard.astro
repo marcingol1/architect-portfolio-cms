@@ -1,0 +1,33 @@
+---
+import ProjectArt from './ProjectArt.astro';
+
+const { project, index } = Astro.props;
+---
+
+<a
+  href={`/realizacje/${project.slug}/`}
+  class="project-card"
+  data-category={project.category}
+>
+  <div class="project-card__media">
+    <ProjectArt
+      variant={project.variant}
+      accent={project.accent}
+      title={project.title}
+      class="project-card__art"
+    />
+    <span class="project-card__hint" aria-hidden="true">→</span>
+  </div>
+  <div class="project-card__body">
+    <div class="project-card__row">
+      <span class="project-card__index">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+      <h3 class="project-card__title">{project.title}</h3>
+      <span class="project-card__year">{project.year}</span>
+    </div>
+    <p class="project-card__meta">
+      {project.categoryLabel} · {project.location}
+    </p>
+  </div>
+</a>
