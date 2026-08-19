@@ -5,6 +5,9 @@
   "author": "Marcin Gol",
   "type": "module",
   "license": "MIT",
+  "engines": {
+    "node": "22.x"
+  },
   "packageManager": "pnpm@10.33.0",
   "keywords": [
     "astro",
