@@ -69,6 +69,5 @@ The sitemap is generated at build time by `@astrojs/sitemap`.
 The form in `src/pages/kontakt.astro` is still marked up for
 [Netlify Forms](https://docs.netlify.com/forms/setup/) (`data-netlify="true"`),
 which does nothing on Vercel — **submissions are not delivered yet**. It needs a
-handler, e.g. a Vercel serverless function, or a third-party endpoint such as
-Formspree. `netlify.toml` is a leftover from the earlier Netlify setup and can be
-deleted once nothing depends on it.
+handler: a Vercel serverless function under `api/`, or a third-party endpoint
+such as Formspree.
