@@ -1,6 +1,6 @@
 {
   "name": "architect-portfolio",
-  "description": "Portfolio pracowni architektonicznej — static Astro site, no CMS",
+  "description": "Architecture studio portfolio — static Astro site, no CMS",
   "version": "3.0.0",
   "author": "Marcin Gol",
   "type": "module",
