@@ -90,6 +90,12 @@ Without `CONTACT_FROM` the function sends from Resend's shared
 the account has no verified domain, Resend only delivers to the address the
 account was registered with, so keep `CONTACT_TO` equal to that address.
 
+> **`CONTACT_FROM` cannot be a Gmail/Outlook/other free-mail address.** You may
+> only send *from* a domain verified in Resend, and nobody can verify
+> `gmail.com`. Setting it to a personal address fails every send with
+> `403 The gmail.com domain is not verified`. Leave the variable unset until you
+> own a domain. Receiving at a Gmail address (`CONTACT_TO`) is fine.
+
 Once you own a domain and verify it in Resend, set `CONTACT_FROM` to an address
 on it — that lifts the recipient restriction and makes messages arrive from your
 own address instead of `resend.dev`. No code change needed.
