@@ -6,7 +6,7 @@ project artwork is drawn in code (SVG), and pages ship no JS bundle — just
 HTML, a single CSS file and ~2 KB of plain JavaScript (menu, filters, reveal
 animations).
 
-Live: https://architektgol.pl/
+Live: [https://architektgol.pl/](https://architect-portfolio-gol.vercel.app/)
 
 > **Language note:** the site copy is in Polish, since it serves a Polish
 > audience. Code comments and this documentation are in English.
